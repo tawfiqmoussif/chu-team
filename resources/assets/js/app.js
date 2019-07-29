@@ -18,14 +18,14 @@ Vue.prototype.$gate = new Gate(window.user);
 import swal from 'sweetalert2'
 window.swal = swal;
 
-const toast = swal.mixin({
+const Toast = swal.mixin({
   toast: true,
   position: 'top-end',
   showConfirmButton: false,
   timer: 3000
 });
 
-window.toast = toast;
+window.Toast = Toast;
 
 
 window.Form = Form;
@@ -50,11 +50,13 @@ let routes = [
     { path: '/developer', component: require('./components/Developer.vue') },
     { path: '/users', component: require('./components/Users.vue') },
     { path: '/profile', component: require('./components/Profile.vue') },
-    { path: '*', component: require('./components/NotFound.vue') }
-  ]
+    { path: '/brancardiers', component: require('./components/Brancardiers.vue')},
+    { path: '*', component: require('./components/NotFound.vue') },
+  
+]
 
 const router = new VueRouter({
-    mode: 'history',
+    mode: 'hash',
     routes // short for `routes: routes`
   })
 
