@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.master_coordinateur')
 
 @section('content')
 <div class="alert alert-success" role="alert">

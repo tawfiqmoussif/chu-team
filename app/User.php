@@ -18,10 +18,6 @@ class User extends Authenticatable
                     **
                     */
 
-    public function profil()
-    {
-        return $this->hasOne('App\Profil');
-    }
 
     public function demandes(){
         //soit traitement soit demande
