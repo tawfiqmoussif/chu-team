@@ -55,7 +55,7 @@ Vue.use(VueProgressBar, {
 let routes = [
     { path: '/dashboard', component: require('./components/Dashboard.vue') },
     { path: '/developer', component: require('./components/Developer.vue') },
-    { path: '/users', component: require('./components/Users.vue') },
+    { path: '/users', component: require('./components/Utilisateurs.vue') },
     { path: '/profile', component: require('./components/Profile.vue') },
     { path: '/brancardiers', component: require('./components/Brancardiers.vue')},
     { path: '/login', component: require('./components/auth/Login.vue')},
@@ -71,11 +71,22 @@ const router = new VueRouter({
 
 
 Vue.filter('upText', function(text){
+    if(Text ==='') return Text;
+    else
     return text.charAt(0).toUpperCase() + text.slice(1)
 });
 
 Vue.filter('myDate',function(created){
     return moment(created).format('MMMM Do YYYY');
+});
+
+Vue.filter('changeTemp',function(Text){
+    if(Text===1) return 'Oui'; 
+    else return 'Non';
+});
+
+Vue.filter('sans',function(Text){
+    if(Text==='Sans') return 'not_active'; return Text;
 });
 
 

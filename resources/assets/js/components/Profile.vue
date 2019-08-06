@@ -22,7 +22,8 @@
                     <h5 class="widget-user-desc">{{this.form.type}}</h5>
                 </div>
                 <div class="widget-user-image">
-                    <img class="img-circle" :src="getProfilePhoto()" alt="User Avatar">
+                    <img class="img-circle" :src="getProfilePhoto()" alt="User Avatar" style="    width: 180px;
+    height: 180px;">
                 </div>
                 <div class="card-footer">
                     <div class="row">
@@ -93,35 +94,13 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="inputExperience" class="col-sm-2 control-label">Experience</label>
-
-                                    <div class="col-sm-12">
-                                    <textarea  v-model="form.bio" class="form-control" id="inputExperience" placeholder="Experience" :class="{ 'is-invalid': form.errors.has('bio') }"></textarea>
-                                     <has-error :form="form" field="bio"></has-error>
-                                    </div>
-                                </div>
-                                <div class="form-group">
                                     <label for="photo" class="col-sm-2 control-label">Profile Photo</label>
                                     <div class="col-sm-12">
                                         <input type="file" @change="updateProfile" name="photo" class="form-input">
-                                    </div>
+                                    </div>  
 
                                 </div>
 
-                                <div class="form-group">
-                                    <label for="password" class="col-sm-12 control-label">Passport (leave empty if not changing)</label>
-
-                                    <div class="col-sm-12">
-                                    <input type="password"
-                                        v-model="form.password"
-                                        class="form-control"
-                                        id="password"
-                                        placeholder="Passport"
-                                        :class="{ 'is-invalid': form.errors.has('password') }"
-                                    >
-                                     <has-error :form="form" field="password"></has-error>
-                                    </div>
-                                </div>
 
                                 <div class="form-group">
                                     <div class="col-sm-offset-2 col-sm-12">
@@ -150,12 +129,17 @@
             return {
                  form: new Form({
                     id:'',
-                    name : '',
+                    name: '',
                     email: '',
                     password: '',
-                    type: '',
-                    bio: '',
-                    photo: ''
+                    photo:'',
+                    cin:'',
+                    age:'',
+                    sexe:'',
+                    metier:'',
+                    ppr:'',
+                    poste_en_interne:'',
+                    temporaire:''
                 })
             }
         },
@@ -171,7 +155,9 @@
                 let photo = (this.form.photo.length > 200) ? this.form.photo : "img/profile/"+ this.form.photo ;
                 return photo;
             },
-
+ loadAuth(){
+        axios.get('api/profileAuth').then(({data})=>(this.form.fill(data)));  
+      },
             updateInfo(){
                 this.$Progress.start();
                 if(this.form.password == ''){
@@ -208,8 +194,9 @@
         },
 
         created() {
-            axios.get("api/profile")
-            .then(({ data }) => (this.form.fill(data)));
+                  this.loadAuth();
+         //   setInterval(()=>this.loadAuth(),3000);
+         Fire.$on('AfterCreateBran',()=>this.loadAuth());
         }
     }
 </script>
