@@ -37,7 +37,12 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-
+   /* protected function authenticated(Request $request,$user){
+        session()->flash('success','successfully logged in');
+        return response()->json([
+            'status' => 'ok'
+        ]);
+    }*/
     protected function redirectTo()
 {
     if(Auth::user()->hasAnyRole("admin")){

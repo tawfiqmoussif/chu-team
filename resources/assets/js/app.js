@@ -10,6 +10,13 @@ require('./bootstrap');
 window.Vue = require('vue');
 import moment from 'moment';
 import { Form, HasError, AlertError } from 'vform';
+import jQuery from 'jquery';
+global.jQuery = jQuery;
+global.$ = jQuery
+let bootstrap = require('bootstrap')
+import 'bootstrap/dist/css/bootstrap.css'
+
+
 
 import Gate from "./Gate";
 Vue.prototype.$gate = new Gate(window.user);
@@ -51,6 +58,7 @@ let routes = [
     { path: '/users', component: require('./components/Users.vue') },
     { path: '/profile', component: require('./components/Profile.vue') },
     { path: '/brancardiers', component: require('./components/Brancardiers.vue')},
+    { path: '/login', component: require('./components/auth/Login.vue')},
     { path: '*', component: require('./components/NotFound.vue') },
   
 ]
@@ -100,6 +108,10 @@ Vue.component(
     require('./components/NotFound.vue')
 );
 
+Vue.component(
+    'vue-login',
+    require('./components/auth/Login.vue')
+);
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 

@@ -22,3 +22,5 @@ Route::get('profile', 'API\UserController@profile');
 Route::get('findUser', 'API\UserController@search');
 Route::put('profile', 'API\UserController@updateProfile');
 Route::apiResource('brancardier', 'API\BrancardierController');
+Route::apiResource('login', 'Auth\LoginController@redirectTo');
+

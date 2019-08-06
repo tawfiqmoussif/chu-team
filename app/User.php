@@ -18,10 +18,10 @@ class User extends Authenticatable
                     **
                     */
 
-    public function profil()
+  /*  public function profile()
     {
-        return $this->hasOne('App\Profil');
-    }
+        return $this->hasOne('App\Profile');
+    }*/
 
     public function demandes(){
         //soit traitement soit demande
