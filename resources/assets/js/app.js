@@ -58,9 +58,17 @@ let routes = [
     { path: '/users', component: require('./components/Utilisateurs.vue') },
     { path: '/profile', component: require('./components/Profile.vue') },
     { path: '/brancardiers', component: require('./components/Brancardiers.vue')},
+<<<<<<< HEAD
     { path: '/login', component: require('./components/auth/Login.vue')},
     { path: '*', component: require('./components/NotFound.vue') },
   
+=======
+    { path: '/demandeurs', component: require('./components/Demandeurs.vue')},
+    { path: '/majors', component: require('./components/Major.vue')},
+    { path: '/services', component: require('./components/Services.vue')},
+    { path: '/coordinateurs', component: require('./components/Coordinateurs.vue')},
+    { path: '*', component: require('./components/NotFound.vue') }, 
+>>>>>>> 3babbebbcc85c1f03dad313534d848255da7a4a3
 ]
 
 const router = new VueRouter({

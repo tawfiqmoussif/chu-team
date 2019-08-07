@@ -16,17 +16,32 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+/////Hajar
+Route::apiResource('major', 'API\MajorController');
+Route::apiResource('demandeur', 'API\DemandeurController');
+Route::apiResource('hopital', 'API\HopitalController');
+Route::apiResource('service', 'API\ServiceController');
+Route::apiResource('coordinateur', 'API\CoordinateurController');
+
+
+///Me
 Route::put('brancardier/{id}', 'API\BrancardierController@updateUser');
 Route::apiResources(['user' => 'API\UserController']);
 Route::get('profileAuth', 'API\BrancardierController@profileAuth');
 //Route::get('profile', 'API\UserController@profile');
 Route::get('findUser', 'API\UserController@search');
+<<<<<<< HEAD
 Route::put('profile', 'API\UserController@updateProfile');
 //Route::apiResource('brancardier', 'API\BrancardierController');
 Route::apiResource('login', 'Auth\LoginController');
 Route::get('redirection', 'Auth\LoginController@redirection');
 
 
+=======
+Route::put('profile', 'API\BrancardierController@updateProfile2');
+>>>>>>> 3babbebbcc85c1f03dad313534d848255da7a4a3
 
 Route::get('users_v', 'API\BrancardierController@index');
 Route::get('brancardier', 'API\BrancardierController@index2');
