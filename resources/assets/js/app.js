@@ -70,7 +70,16 @@ Vue.filter('upText', function(text){
     else
     return text.charAt(0).toUpperCase() + text.slice(1)
 });
-
+function isEmpty(str) {
+    return (!str || 0 === str.length);
+}
+Vue.filter('metier', function(text){
+    if(!isEmpty(Text)) 
+    return text.charAt(0).toUpperCase() + text.slice(1);
+    else
+    return 'Administrateur';
+   
+});
 Vue.filter('myDate',function(created){
     return moment(created).format('MMMM Do YYYY');
 });

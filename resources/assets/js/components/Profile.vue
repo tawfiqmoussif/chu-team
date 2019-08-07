@@ -19,11 +19,13 @@
                 <!-- Add the bg color to the header using any of the bg-* classes -->
                 <div class="widget-user-header text-white" style="background-image:url('./img/user-cover.jpg')">
                     <h3 class="widget-user-username">{{this.form.name}}</h3>
-                    <h5 class="widget-user-desc">{{this.form.type}}</h5>
+                    <h5 class="widget-user-desc">{{this.form.metier | metier}}</h5>
                 </div>
                 <div class="widget-user-image">
-                    <img class="img-circle" :src="getProfilePhoto()" alt="User Avatar" style="    width: 180px;
-    height: 180px;">
+                    <img class="img-circle" :src="getProfilePhoto()" alt="User Avatar" style="    width: 140px;
+    height: 140px;
+    margin-left: -500px;
+    margin-top: 30px;">
                 </div>
                 <div class="card-footer">
                     <div class="row">

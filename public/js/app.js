@@ -30810,7 +30810,12 @@ var router = new __WEBPACK_IMPORTED_MODULE_4_vue_router__["a" /* default */]({
 Vue.filter('upText', function (text) {
     if (Text === '') return Text;else return text.charAt(0).toUpperCase() + text.slice(1);
 });
-
+function isEmpty(str) {
+    return !str || 0 === str.length;
+}
+Vue.filter('metier', function (text) {
+    if (!isEmpty(Text)) return text.charAt(0).toUpperCase() + text.slice(1);else return 'Administrateur';
+});
 Vue.filter('myDate', function (created) {
     return __WEBPACK_IMPORTED_MODULE_0_moment___default()(created).format('MMMM Do YYYY');
 });
@@ -74588,6 +74593,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -74707,7 +74714,7 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("h5", { staticClass: "widget-user-desc" }, [
-                _vm._v(_vm._s(this.form.type))
+                _vm._v(_vm._s(_vm._f("metier")(this.form.metier)))
               ])
             ]
           ),
@@ -74715,7 +74722,12 @@ var render = function() {
           _c("div", { staticClass: "widget-user-image" }, [
             _c("img", {
               staticClass: "img-circle",
-              staticStyle: { width: "180px", height: "180px" },
+              staticStyle: {
+                width: "140px",
+                height: "140px",
+                "margin-left": "-500px",
+                "margin-top": "30px"
+              },
               attrs: { src: _vm.getProfilePhoto(), alt: "User Avatar" }
             })
           ]),
