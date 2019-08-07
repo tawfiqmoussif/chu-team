@@ -292,4 +292,59 @@ class BrancardierController extends Controller
 
         return ['message' => 'bran deleted !'];
     }
+
+
+
+    public function updateProfile2(Request $request)
+    {
+        $user = Auth::user();
+
+
+        $this->validate($request,[
+            'name' => 'required|string|max:191',
+            'email' => 'required|string|email|max:191|unique:users,email,'.$user->id,
+            'password' => 'sometimes|required|min:6',
+            'nom'=>'required',
+            'prenom'=>'required',
+            'age'=>'required',
+            'sexe'=>'required'
+        ]);
+
+
+        $currentPhoto = $user->photo;
+
+
+        if($request->photo != $currentPhoto){
+            $name = time().'.' . explode('/', explode(':', substr($request->photo, 0, strpos($request->photo, ';')))[1])[1];
+
+            \Image::make($request->photo)->save(public_path('img/profile/').$name);
+            $request->merge(['photo' => $name]);
+
+            $userPhoto = public_path('img/profile/').$currentPhoto;
+            if(file_exists($userPhoto)){
+                @unlink($userPhoto);
+            }
+
+        }
+
+
+        if(!empty($request->password)){
+            $request->merge(['password' => Hash::make($request['password'])]);
+        }
+
+
+        $user->name=$request['name'];
+        $user->email=$request['email'];
+        $user->password=Hash::make($request['password']);
+        $user->age=$request['age'];
+        $user->ppr=$request['ppr'];
+        $user->sexe=$request['sexe'];
+        $user->nom=$request['nom'];
+        $user->prenom=$request['prenom'];
+        $user->tel=$request['tel'];
+        $user->photo=$request['photo'];
+        $user->save();
+        return ['message' => "Success"];
+    }
+
 }

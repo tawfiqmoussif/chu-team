@@ -110,7 +110,7 @@ class MajorController extends Controller
         $bran =User::findOrFail($id);
         $currentPhoto = $bran->photo;
  
- 
+
         if($request['photo'] != $currentPhoto){
             $name = time().'.' . explode('/', explode(':', substr($request['photo'], 0, strpos($request['photo'], ';')))[1])[1];
  

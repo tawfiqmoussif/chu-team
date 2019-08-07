@@ -84,6 +84,25 @@
                                      <has-error :form="form" field="name"></has-error>
                                     </div>
                                 </div>
+
+
+                                <div class="form-group">
+                                    <label for="inputName" class="col-sm-2 control-label">Nom</label>
+
+                                    <div class="col-sm-12">
+                                    <input type="" v-model="form.nom" class="form-control" id="inputName" placeholder="Nom" :class="{ 'is-invalid': form.errors.has('nom') }">
+                                     <has-error :form="form" field="nom"></has-error>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="inputName" class="col-sm-2 control-label">Prénom</label>
+
+                                    <div class="col-sm-12">
+                                    <input type="" v-model="form.prenom" class="form-control" id="inputName" placeholder="Prénom" :class="{ 'is-invalid': form.errors.has('prenom') }">
+                                     <has-error :form="form" field="prenom"></has-error>
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <label for="inputEmail" class="col-sm-2 control-label">Email</label>
 
@@ -92,14 +111,51 @@
                                      <has-error :form="form" field="email"></has-error>
                                     </div>
                                 </div>
+              <div class="form-group"> 
+                  <label class="col-sm-2 control-label">Choisir le sexe</label>  
+                  <div class="col-sm-12">
+                <select v-model="form.sexe" type="text" name="sexe" class="browser-default custom-select">
+                    <option v-for="option in options" :key="option.id" :selected="option.value== form.sexe"> {{ option.value}}</option>
+                </select>
+                </div>
+             </div>
+                                  <div class="form-group">
+                                    <label for="inputEmail" class="col-sm-2 control-label">PPR</label>
+
+                                    <div class="col-sm-12">
+                                    <input type="email" v-model="form.ppr" class="form-control" id="inputEmail" placeholder="PPR"  :class="{ 'is-invalid': form.errors.has('ppr') }">
+                                     <has-error :form="form" field="ppr"></has-error>
+                                    </div>
+                                </div>
+
+                                  <div class="form-group">
+                                    <label for="inputEmail" class="col-sm-2 control-label">Age</label>
+
+                                    <div class="col-sm-12">
+                                    <input type="email" v-model="form.age" class="form-control" id="inputEmail" placeholder="Age"  :class="{ 'is-invalid': form.errors.has('age') }">
+                                     <has-error :form="form" field="age"></has-error>
+                                    </div>
+                                </div>
+
+                                 <div class="form-group">
+                                    <label for="inputEmail" class="col-sm-2 control-label">Téléphone</label>
+
+                                    <div class="col-sm-12">
+                                    <input type="email" v-model="form.tel" class="form-control" id="inputEmail" placeholder="Téléphone"  :class="{ 'is-invalid': form.errors.has('tel') }">
+                                     <has-error :form="form" field="tel"></has-error>
+                                    </div>
+                                </div>
+                                
 
                                 <div class="form-group">
-                                    <label for="photo" class="col-sm-2 control-label">Profile Photo</label>
+                                    <label for="inputEmail" class="col-sm-2 control-label">Photo de profile</label>
                                     <div class="col-sm-12">
-                                        <input type="file" @change="updateProfile" name="photo" class="form-input">
-                                    </div>  
-
-                                </div>
+                      <div class="custom-file">
+                        <input type="file"   @change="updateProfile" name="photo" id="photo" class="custom-file-input" style="margin: 0px 0px 0px 140px;" >
+                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                        </div>
+                      </div>
+                    </div>
 
 
                                 <div class="form-group">
@@ -130,6 +186,9 @@
                  form: new Form({
                     id:'',
                     name: '',
+                    nom: '',
+                    prenom: '',
+                    tel: '',
                     email: '',
                     password: '',
                     photo:'',
@@ -139,8 +198,13 @@
                     metier:'',
                     ppr:'',
                     poste_en_interne:'',
-                    temporaire:''
-                })
+                    
+                }),
+                    options: [
+          { id: 1, value: 'Homme' },
+          { id: 2, value: 'Femme' },
+        
+        ],
             }
         },
         mounted() {
@@ -165,7 +229,15 @@
                 }
                 this.form.put('api/profile')
                 .then(()=>{
-                     Fire.$emit('AfterCreate');
+                     Fire.$emit('AfterCreateBran');
+                     
+                     
+                     swal.fire(
+                                    'Updated !',
+                    'Vos informations sont bien modifiées.',
+                    'success'
+                  )
+                  this.$Progress.finish();
                     this.$Progress.finish();
                 })
                 .catch(() => {

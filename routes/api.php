@@ -32,7 +32,7 @@ Route::apiResources(['user' => 'API\UserController']);
 Route::get('profileAuth', 'API\BrancardierController@profileAuth');
 //Route::get('profile', 'API\UserController@profile');
 Route::get('findUser', 'API\UserController@search');
-Route::put('profile', 'API\UserController@updateProfile');
+Route::put('profile', 'API\BrancardierController@updateProfile2');
 
 Route::get('users_v', 'API\BrancardierController@index');
 Route::get('brancardier', 'API\BrancardierController@index2');
