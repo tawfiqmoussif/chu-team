@@ -16,6 +16,17 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+/////Hajar
+Route::apiResource('major', 'API\MajorController');
+Route::apiResource('demandeur', 'API\DemandeurController');
+Route::apiResource('hopital', 'API\HopitalController');
+Route::apiResource('service', 'API\ServiceController');
+Route::apiResource('coordinateur', 'API\CoordinateurController');
+
+
+///Me
 Route::put('brancardier/{id}', 'API\BrancardierController@updateUser');
 Route::apiResources(['user' => 'API\UserController']);
 Route::get('profileAuth', 'API\BrancardierController@profileAuth');

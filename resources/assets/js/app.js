@@ -51,8 +51,11 @@ let routes = [
     { path: '/users', component: require('./components/Utilisateurs.vue') },
     { path: '/profile', component: require('./components/Profile.vue') },
     { path: '/brancardiers', component: require('./components/Brancardiers.vue')},
-    { path: '*', component: require('./components/NotFound.vue') },
-  
+    { path: '/demandeurs', component: require('./components/Demandeurs.vue')},
+    { path: '/majors', component: require('./components/Major.vue')},
+    { path: '/services', component: require('./components/Services.vue')},
+    { path: '/coordinateurs', component: require('./components/Coordinateurs.vue')},
+    { path: '*', component: require('./components/NotFound.vue') }, 
 ]
 
 const router = new VueRouter({

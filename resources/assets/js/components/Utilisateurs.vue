@@ -151,7 +151,7 @@
 
                 <div class="form-group">
             <input v-model="form.name" type="text" name="name"
-            placeholder="Nom"
+            placeholder="Nom d'utilisateur"
                 class="form-control" :class="{ 'is-invalid': form.errors.has('name') }">
             <has-error :form="form" field="name"></has-error>
                 </div>
@@ -160,14 +160,14 @@
             <input v-model="form.nom" type="text" name="nom"
             placeholder="Nom"
                 class="form-control" :class="{ 'is-invalid': form.errors.has('nom') }">
-            <has-error :form="form" field="name"></has-error>
+            <has-error :form="form" field="nom"></has-error>
                 </div>
 
                  <div class="form-group">
             <input v-model="form.prenom" type="text" name="prenom"
-            placeholder="Nom"
+            placeholder="Prénom"
                 class="form-control" :class="{ 'is-invalid': form.errors.has('prenom') }">
-            <has-error :form="form" field="name"></has-error>
+            <has-error :form="form" field="prenom"></has-error>
                 </div>
 
                 <div class="form-group">
@@ -230,10 +230,10 @@
         })
         , metiers: [
           { id: 1, value: 'brancardier' },
-          { id: 2, value: 'Major' },
-          { id: 3, value: 'Demandeur' },
-          { id: 4, value: 'Coordinateur' },
-          { id: 5, value: 'Admin' },
+          { id: 2, value: 'major' },
+          { id: 3, value: 'demandeur' },
+          { id: 4, value: 'coordinateur' },
+          { id: 5, value: 'admin' },
           { id: 6, value: 'Sans' },
         
         ],

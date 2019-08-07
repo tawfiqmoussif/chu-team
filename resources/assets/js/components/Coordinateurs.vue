@@ -4,10 +4,10 @@
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Liste des brancardiers</h3>
+                <h3 class="card-title">Liste des Coorinateurs</h3>
 
                 <div class="card-tools">
-                 <button class="btn btn-success" @click='newModal()'>Ajouter un brancardier
+                 <button class="btn btn-success" @click='newModal()'>Ajouter un Coordinateur
                      <i class="fas fa-user-plus fa-fw"></i>
                      </button>  
                 </div> 
@@ -100,9 +100,7 @@
                   <li class="list-group-item">
                     <b>Sexe</b> <a class="float-right">{{form.sexe}}</a>
                   </li>
-                   <li class="list-group-item">
-                    <b>Temporaire</b> <a class="float-right">{{form.temporaire |changeTemp}}</a>
-                  </li>
+
                 </ul>
 
                 <a @click='editModal(detailsBran)' class="btn btn-primary btn-block"><b>Modifier</b></a>
@@ -123,8 +121,8 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 v-show='editMode' class="modal-title" id="exampleModalCenterTitle">Modifier Un Brancardie</h5>               
-                <h5 v-show='!editMode' class="modal-title" id="exampleModalCenterTitle">Ajouter Un Brancardie</h5>
+                <h5 v-show='editMode' class="modal-title" id="exampleModalCenterTitle">Modifier Un Coordinateur</h5>               
+                <h5 v-show='!editMode' class="modal-title" id="exampleModalCenterTitle">Ajouter Un Coordinateur</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
@@ -213,13 +211,6 @@
                 </select>
              </div>
 
-             <div class="form-group"> 
-                  <label>Temporaire</label>  
-                <select v-model="form.temporaire" type="text" name="temporaire" class="browser-default custom-select">
-                    <option v-for="temp in tempo" :key="temp.id" :selected="form.temporaire == temp.id" :value="temp.id"> {{ temp.id  |changeTemp   }}</option>
-                </select>
-             </div>
-
                <div class="form-group" v-show="editMode"> 
                   <label>Choisir la métier</label>  
                 <select v-model="form.metier" type="text" name="metier" class="browser-default custom-select">
@@ -273,7 +264,6 @@
             metier:'',
             ppr:'',
             poste_en_interne:'',
-            temporaire:''
             //remember: false
         }),
          options: [
@@ -337,13 +327,13 @@
 updateBrancardier(){
   this.$Progress.start();
 //console.log('updating data');
-this.form.put('api/brancardier/'+this.form.id)
+this.form.put('api/coordinateur/'+this.form.id)
 .then(()=>{
   Fire.$emit('AfterCreateBran');
      $('#addnew').modal('hide');
           swal.fire(
                     'Updated !',
-                    'Les informations du brancardier est bien modifié.',
+                    'Les informations du Coordinateur est bien modifié.',
                     'success'
                   )
                   this.$Progress.finish();
@@ -367,16 +357,16 @@ editModal(brancardier){
            this.form.fill(brancardier);
 },
       loadBrancardier(){
-        axios.get('api/brancardier').then(({data})=>(this.brancardiers = data));  
+        axios.get('api/coordinateur').then(({data})=>(this.brancardiers = data));  
       },
       createBrancardier(){
            this.$Progress.start();
-           this.form.post('api/brancardier')
+           this.form.post('api/coordinateur')
            .then(()=>{
             Fire.$emit('AfterCreateBran');
            Toast.fire({
             type: 'success',
-            title: 'Brancardier crée avec succès'
+            title: 'Coordinateur crée avec succès'
           });
           $('#addnew').modal('hide');
            this.$Progress.finish();
@@ -397,7 +387,7 @@ editModal(brancardier){
     }).then((result) => {
       if (result.value) {
 
-          this.form.delete('api/brancardier/'+id)
+          this.form.delete('api/coordinateur/'+id)
           .then(()=>{
           Fire.$emit('AfterCreateBran');
           swal.fire(

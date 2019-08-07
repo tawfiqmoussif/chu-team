@@ -57,8 +57,7 @@ class BrancardierController extends Controller
         return DB::select("select DISTINCT users.id,
         users.name,
         users.nom,
-        users.prenom,
-        users.tel,
+        users.prenom,       
         users.email,
         users.password,
         users.metier from users     
@@ -98,7 +97,7 @@ class BrancardierController extends Controller
      */
     public function store(Request $request)
     {
-        if($request['photo']!='Profile.png')
+        if($request['photo']!='profile.png')
  
            { $name = time().'.' . explode('/', explode(':', substr($request['photo'], 0, strpos($request['photo'], ';')))[1])[1];
  
@@ -157,6 +156,8 @@ class BrancardierController extends Controller
 
         $user =User::where('email',$request['email'])->first();
         $user->metier=$request['metier'];
+        $user->nom=$request['nom'];
+        $user->prenom=$request['prenom'];
         $user->save();
         if($request['metier']==='brancardier')
         $user->roles()->attach(Role::where('name','brancardier')->first());
@@ -242,7 +243,8 @@ class BrancardierController extends Controller
         'name' =>  'required|string|max:191',
         'email' =>  'required|string||email|max:191|unique:users,email,'.$bran->id,
         'password' =>  'sometimes|min:8',
-        'age'=>'required'
+        'age'=>'required',
+        'metier'=>'required',
         ]);     
         $bran->name=$request['name'];
         $bran->email=$request['email'];
@@ -252,11 +254,24 @@ class BrancardierController extends Controller
         $bran->temporaire=$request['temporaire'];
         $bran->ppr=$request['ppr'];
         $bran->sexe=$request['sexe'];
-        $bran->metier=$request['metier'];
-        $bran->ppr=$request['nom'];
-        $bran->sexe=$request['prenom'];
-        $bran->metier=$request['tel'];
+        $bran->nom=$request['nom'];
+        $bran->prenom=$request['prenom'];
+        $bran->tel=$request['tel'];
         $bran->photo=$request['photo'];
+
+        if($request['metier']!= $bran->metier)
+        {$bran->metier=$request['metier'];
+        $bran->roles()->attach(Role::where('name',$bran->metier)->first());}
+
+        else if($request['metier']==='Sans')
+        {
+            $bran->metier=$request['metier'];
+            $bran->roles()->attach(Role::where('name','not_active')->first());   
+        }
+        else{
+            $bran->metier=$request['metier'];
+        }
+
         $bran->save();
       // return ['message' => 'update bran'+$request['age']];
     }
