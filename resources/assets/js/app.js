@@ -63,8 +63,7 @@ let routes = [
     { path: '/majors', component: require('./components/Major.vue')},
     { path: '/services', component: require('./components/Services.vue')},
     { path: '/coordinateurs', component: require('./components/Coordinateurs.vue')},
-    { path: '*', component: require('./components/NotFound.vue') }, 
-
+    { path: '*', component: require('./components/NotFound.vue') },
 ]
 
 const router = new VueRouter({
