@@ -66,4 +66,25 @@ class LoginController extends Controller
     }
     
 }
+public function redirection(){
+    if(Auth::user()->hasAnyRole("admin")){
+        return response()->json(['role' => 'admin','path' => '/admin']); 
+    }
+    if(Auth::user()->hasAnyRole("coordinateur")){
+        return response()->json(['role' => 'coordinateur','path' => '/coordinateur']); 
+    }
+    if(Auth::user()->hasAnyRole("major") ){
+        return response()->json(['role' => 'major','path' => '/major']);        
+    }
+    if(Auth::user()->hasAnyRole("demandeur")){
+        return response()->json(['role' => 'demandeur','path' => '/demandeur']); 
+    }
+ 
+    if(Auth::user()->hasAnyRole("brancardier") ){
+        return response()->json(['role' => 'brancardier','path' => '/brancardier']);        
+    }
+    if(Auth::user()->hasAnyRole("not_active")){
+        return response()->json(['role' => 'not_active','path' => '/not_active']);
+    }
+}
 }

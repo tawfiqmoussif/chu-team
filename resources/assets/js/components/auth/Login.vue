@@ -53,6 +53,7 @@
 		  </div>
 </template>
 <script type="text/javascript">
+
    /* $(document).ready(function(){
         openLoginModal();// for open modal automaticly
     });*/
@@ -62,6 +63,7 @@
          return{
            email: 'hi',
            password: '',
+           ax: ''
          }
        },
        computed: {
@@ -69,6 +71,9 @@
          return this.emailIsValid() && this.password 
         }
        },
+       props: [
+          'redirectTo',
+       ],
        methods: {
          emailIsValid(mail) 
             {
@@ -78,13 +83,29 @@
                 }
                   return (false)
             },
+         
+               
+        redirection(){
+         axios.get('/redirection').then(({resp})=> (this.ax=resp.data)).catch(error => {
+             
+              console.log('nnnnnn')
+            }
+           
+           );
+            
+        },
+         
         attemptLogin(){
            this.$Progress.start();
+            
             axios.post('/login',{
               email: this.email, password: this.password
             }).then(resp =>{
               console.log('nja7t'),
-              location.reload()
+              //{{ LoginController::redirectTo(); }},
+              //location.href = '/admin';
+              this.redirection(),               
+              
               this.$Progress.finish();
              //redirectTo()
             }).catch(error => {
@@ -92,9 +113,11 @@
               loginAjax(),
               console.log('khsart')
             },
-              
-              
+           
             )
+             
+         
+            
         },
         
 
