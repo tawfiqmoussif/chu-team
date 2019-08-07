@@ -123,20 +123,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <router-link to="/brancardiers" class="nav-link">
-                  <i class="fas fa-users nav-icon orange"></i>
-                  <p>Brancardiers</p>
-                </router-link>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Option 2 </p>
-                </a>
-              </li>
-            </ul>
+           
           </li>
          
         </ul>
